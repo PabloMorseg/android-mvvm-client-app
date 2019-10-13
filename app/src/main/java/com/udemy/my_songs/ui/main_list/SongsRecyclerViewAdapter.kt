@@ -1,4 +1,4 @@
-package com.udemy.my_songs.ui
+package com.udemy.my_songs.ui.main_list
 
 import android.view.View
 import android.view.ViewGroup
