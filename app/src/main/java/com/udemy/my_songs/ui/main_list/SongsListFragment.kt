@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.my_songs.R
+import com.udemy.my_songs.model.Song
 import kotlinx.android.synthetic.main.songs_list_fragment.*
 
 class SongsListFragment : Fragment() {
@@ -25,6 +26,10 @@ class SongsListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        configureView()
+    }
+
+    private fun configureView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
@@ -35,6 +40,10 @@ class SongsListFragment : Fragment() {
             }
         )
         viewModel.fetchSongs()
+
+        addButton.setOnClickListener {
+            // TODO
+        }
     }
 
     companion object {
