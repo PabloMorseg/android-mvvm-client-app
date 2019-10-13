@@ -8,9 +8,14 @@ import com.udemy.my_songs.R
 import com.udemy.my_songs.inflate
 import com.udemy.my_songs.model.Song
 
-class SongsRecyclerViewAdapter(
-    private val songs: List<Song>
-) : RecyclerView.Adapter<SongsRecyclerViewAdapter.ViewHolder>() {
+class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.ViewHolder>() {
+
+    var songsList: List<Song> = arrayListOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -19,10 +24,10 @@ class SongsRecyclerViewAdapter(
         return ViewHolder(inflatedView)
     }
 
-    override fun getItemCount() = songs.size
+    override fun getItemCount() = songsList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val song = songs[position]
+        val song = songsList[position]
         holder.bind(song)
     }
 
