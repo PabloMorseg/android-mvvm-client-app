@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.my_songs.R
-import com.udemy.my_songs.model.Song
 import kotlinx.android.synthetic.main.songs_list_fragment.*
 
 class SongsListFragment : Fragment() {
@@ -34,12 +33,11 @@ class SongsListFragment : Fragment() {
         recyclerView.adapter = adapter
 
         viewModel = ViewModelProviders.of(this).get(SongsListViewModel::class.java)
-        viewModel.songsList.observe(
+        viewModel.allSongs.observe(
             this, Observer { songsList ->
                 adapter.songsList = songsList
             }
         )
-        viewModel.fetchSongs()
 
         addButton.setOnClickListener {
             // TODO
