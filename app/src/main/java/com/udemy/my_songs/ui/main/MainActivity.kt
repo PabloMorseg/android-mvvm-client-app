@@ -1,9 +1,10 @@
-package com.udemy.my_songs
+package com.udemy.my_songs.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.udemy.my_songs.R
 import com.udemy.my_songs.ui.SongsRecyclerViewAdapter
 import com.udemy.my_songs.utils.Mocker
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = SongsRecyclerViewAdapter(
             Mocker.createMockSongsList(50)
-
         )
     }
 }
