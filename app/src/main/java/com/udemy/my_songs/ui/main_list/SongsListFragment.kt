@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.my_songs.R
 import kotlinx.android.synthetic.main.songs_list_fragment.*
+
 
 class SongsListFragment : Fragment() {
 
@@ -40,7 +42,7 @@ class SongsListFragment : Fragment() {
         )
 
         addButton.setOnClickListener {
-            // TODO
+            view?.findNavController()?.navigate(R.id.action_to_addSongFragment)
         }
     }
 
