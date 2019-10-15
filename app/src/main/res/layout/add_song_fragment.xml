@@ -6,7 +6,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/songName"
+        android:id="@+id/songNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/song_name"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/artistName"
+        android:id="@+id/artistNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/artist_name"
@@ -25,10 +25,10 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songName" />
+        app:layout_constraintTop_toBottomOf="@+id/songNameEditText" />
 
     <EditText
-        android:id="@+id/year"
+        android:id="@+id/yearEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/published_year"
@@ -36,15 +36,15 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/artistName" />
+        app:layout_constraintTop_toBottomOf="@+id/artistNameEditText" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/year" />
+        app:layout_constraintTop_toBottomOf="@+id/yearEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

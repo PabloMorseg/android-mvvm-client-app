@@ -5,4 +5,5 @@
     <string name="artist_name">Nombre del artista</string>
     <string name="published_year">Año de publicación</string>
     <string name="save">Guardar</string>
+    <string name="please_fill_all_the_fields">Por favor, rellena todos los campos.</string>
 </resources>
