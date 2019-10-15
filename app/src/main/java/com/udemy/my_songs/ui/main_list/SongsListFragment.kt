@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.my_songs.R
 import kotlinx.android.synthetic.main.songs_list_fragment.*
@@ -31,13 +32,18 @@ class SongsListFragment : Fragment() {
     }
 
     private fun configureView() {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+        context?.let { context ->
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.adapter = adapter
+            val swipeToDeleteCallback = SwipeToDeleteCallback(context, adapter)
+            val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+            itemTouchHelper.attachToRecyclerView(recyclerView)
+        }
 
         viewModel = ViewModelProviders.of(this).get(SongsListViewModel::class.java)
         viewModel.allSongs.observe(
             this, Observer { songsList ->
-                adapter.songsList = songsList
+                adapter.songsList = songsList.toMutableList()
             }
         )
 
