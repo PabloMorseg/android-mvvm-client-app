@@ -1,9 +1,6 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -37,12 +34,12 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
     // Networking
-    implementation "com.squareup.retrofit2:retrofit:2.6.1"
-    implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     // Dependency Injection
-    implementation "com.google.dagger:dagger:2.25.2"
-    implementation "com.google.dagger:dagger-android:2.25.2"
-    kapt "com.google.dagger:dagger-android-processor:2.25.2"
-    kapt "com.google.dagger:dagger-compiler:2.25.2"
-    implementation "javax.inject:javax.inject:1"
+    implementation 'com.google.dagger:dagger:2.25.2'
+    implementation 'com.google.dagger:dagger-android:2.25.2'
+    kapt 'com.google.dagger:dagger-android-processor:2.25.2'
+    kapt 'com.google.dagger:dagger-compiler:2.25.2'
+    implementation 'javax.inject:javax.inject:1'
 }
