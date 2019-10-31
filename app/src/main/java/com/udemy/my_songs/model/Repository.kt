@@ -2,16 +2,18 @@ package com.udemy.my_songs.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.udemy.my_songs.network.NetworkService
 import com.udemy.my_songs.utils.Mocker
 
-class Repository {
+class Repository(private val networkService: NetworkService) :
+    IRepository {
     private var allSongs: MutableLiveData<List<Song>> = MutableLiveData()
 
     init {
         allSongs.value = fetchSongs()
     }
 
-    fun getAllSongs(): LiveData<List<Song>> {
+    override fun getAllSongs(): LiveData<List<Song>> {
         return allSongs
     }
 

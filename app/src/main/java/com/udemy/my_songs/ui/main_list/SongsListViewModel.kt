@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.udemy.my_songs.model.Repository
 import com.udemy.my_songs.model.Song
 
-class SongsListViewModel : ViewModel() {
-
-    private var repository = Repository()
+class SongsListViewModel(repository: Repository) : ViewModel() {
 
     val allSongs: LiveData<List<Song>>
         get() = _songsList

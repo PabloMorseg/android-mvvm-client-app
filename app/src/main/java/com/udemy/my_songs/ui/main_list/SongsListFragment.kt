@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.my_songs.R
 import kotlinx.android.synthetic.main.songs_list_fragment.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class SongsListFragment : Fragment() {
 
-    private lateinit var viewModel: SongsListViewModel
+    private val viewModel: SongsListViewModel by viewModel()
     private var adapter = SongsRecyclerViewAdapter()
 
     override fun onCreateView(
@@ -40,7 +40,6 @@ class SongsListFragment : Fragment() {
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }
 
-        viewModel = ViewModelProviders.of(this).get(SongsListViewModel::class.java)
         viewModel.allSongs.observe(
             this, Observer { songsList ->
                 adapter.songsList = songsList.toMutableList()

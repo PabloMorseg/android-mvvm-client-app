@@ -10,9 +10,9 @@ class Mocker {
             for (i in 1..total) {
                 songs.add(
                     Song(
-                        "Nombre de la canción $i",
-                        "Nombre del artista $i",
-                        Random.nextInt(1950, 2019)
+                        name = "Nombre de la canción $i",
+                        artist = "Nombre del artista $i",
+                        year = Random.nextInt(1950, 2019)
                     )
                 )
             }
