@@ -6,6 +6,6 @@ class Repository(private val networkService: NetworkService) :
     IRepository {
 
     override suspend fun getAllSongs(): List<Song> {
-        return networkService.getSongs()
+        return networkService.retrieveSongs().songs ?: emptyList()
     }
 }

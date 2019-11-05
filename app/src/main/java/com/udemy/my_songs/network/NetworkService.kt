@@ -1,6 +1,7 @@
 package com.udemy.my_songs.network
 
 import com.udemy.my_songs.model.Song
+import com.udemy.my_songs.model.SongsResponseData
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
@@ -9,7 +10,7 @@ import retrofit2.http.Path
 
 interface NetworkService {
     @GET("songs")
-    suspend fun getSongs(): List<Song> // Obtener el listado de canciones de todas las canciones.
+    suspend fun retrieveSongs(): SongsResponseData // Obtener el listado de canciones de todas las canciones.
 
     @POST("songs")
     fun createSong(song: Song) // Crear una nueva canción.
