@@ -1,7 +1,7 @@
 package com.udemy.my_songs.network
 
 import com.udemy.my_songs.model.Song
-import com.udemy.my_songs.model.SongsResponseData
+import com.udemy.my_songs.network.dto.SongsResponseData
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
