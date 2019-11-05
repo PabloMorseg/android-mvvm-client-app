@@ -17,7 +17,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "API_URL", "\"http://localhost:8080/api/\""
+            buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080/api/\"" // Emulator
             debuggable true
         }
         release {
