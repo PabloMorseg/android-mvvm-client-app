@@ -14,6 +14,9 @@ val networkModule = module {
     single { provideRetrofit(get()) }
 }
 
+fun provideNetworkService(retrofit: Retrofit): NetworkService =
+    retrofit.create(NetworkService::class.java)
+
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
     Retrofit.Builder()
         .baseUrl(BuildConfig.API_URL)
@@ -30,6 +33,3 @@ fun provideOkHttpClient(): OkHttpClient {
         .addInterceptor(logging)
         .build()
 }
-
-fun provideNetworkService(retrofit: Retrofit): NetworkService =
-    retrofit.create(NetworkService::class.java)
