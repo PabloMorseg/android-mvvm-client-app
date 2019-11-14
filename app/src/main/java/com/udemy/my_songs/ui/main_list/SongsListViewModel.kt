@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 class SongsListViewModel(repository: Repository) : ViewModel() {
 
     var songsLiveData = liveData(Dispatchers.IO) {
-        val songs = repository.getAllSongs()
+        val songs = repository.retrieveSongs()
         emit(songs)
     }
 }

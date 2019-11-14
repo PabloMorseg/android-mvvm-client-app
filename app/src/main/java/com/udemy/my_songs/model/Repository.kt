@@ -4,7 +4,7 @@ import com.udemy.my_songs.network.NetworkService
 
 class Repository(private val networkService: NetworkService) {
 
-    suspend fun getAllSongs(): List<Song> {
+    suspend fun retrieveSongs(): List<Song> {
         return networkService.retrieveSongs().songs ?: emptyList()
     }
 }
