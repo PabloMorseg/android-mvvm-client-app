@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import com.udemy.my_songs.R
 import com.udemy.my_songs.model.Song
 import kotlinx.android.synthetic.main.add_song_fragment.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class AddSongFragment : Fragment() {
+
+    private val viewModel: AddSongViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class AddSongFragment : Fragment() {
         val yearString = yearEditText.text.toString()
         if (songName.isNotEmpty() && artistName.isNotEmpty() && yearString.isNotEmpty()) {
             val song = Song(songName, artistName, yearString.toInt())
-            // TODO: Enviar petición para guardar la canción
+            viewModel.createSong(song)
         } else {
             Toast.makeText(context, R.string.please_fill_all_the_fields, Toast.LENGTH_SHORT)
                 .show()

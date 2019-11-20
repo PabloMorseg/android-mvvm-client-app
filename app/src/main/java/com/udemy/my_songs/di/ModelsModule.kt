@@ -11,6 +11,6 @@ val modelsModule = module {
     single { Repository(get()) }
 
     viewModel { SongsListViewModel(get()) }
-    viewModel { AddSongViewModel() }
+    viewModel { AddSongViewModel(get()) }
     factory { SongsListFragment() }
 }

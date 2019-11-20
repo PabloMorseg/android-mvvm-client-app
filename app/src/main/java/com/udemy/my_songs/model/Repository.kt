@@ -7,4 +7,8 @@ class Repository(private val networkService: NetworkService) {
     suspend fun retrieveSongs(): List<Song> {
         return networkService.retrieveSongs().songs ?: emptyList()
     }
+
+    suspend fun createSong(song: Song) {
+        networkService.createSong(song)
+    }
 }
