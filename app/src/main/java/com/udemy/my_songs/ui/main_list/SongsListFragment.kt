@@ -18,7 +18,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class SongsListFragment : Fragment() {
 
     private val viewModel: SongsListViewModel by viewModel()
-    private var adapter = SongsRecyclerViewAdapter()
+    private val adapter by lazy { SongsRecyclerViewAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
