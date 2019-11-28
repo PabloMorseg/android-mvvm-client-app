@@ -36,7 +36,7 @@ class SongsListFragment : Fragment() {
         context?.let { context ->
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
-            val swipeToDeleteCallback = SwipeToDeleteCallback(context, adapter)
+            val swipeToDeleteCallback = SwipeToDeleteCallback(context, adapter, viewModel)
             val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }

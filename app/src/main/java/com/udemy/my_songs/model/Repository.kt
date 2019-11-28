@@ -11,4 +11,8 @@ class Repository(private val networkService: NetworkService) {
     suspend fun createSong(song: Song) {
         networkService.createSong(song)
     }
+
+    suspend fun removeSong(songId: String) {
+        networkService.removeSong(songId)
+    }
 }

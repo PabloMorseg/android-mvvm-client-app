@@ -12,7 +12,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.udemy.my_songs.R
 
-class SwipeToDeleteCallback(context: Context, private val adapter: SongsRecyclerViewAdapter) :
+class SwipeToDeleteCallback(
+    context: Context,
+    private val adapter: SongsRecyclerViewAdapter,
+    private val viewModel: SongsListViewModel
+) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val deleteIcon = ContextCompat.getDrawable(context, R.drawable.ic_delete_white_24dp)!!
@@ -32,7 +36,11 @@ class SwipeToDeleteCallback(context: Context, private val adapter: SongsRecycler
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.adapterPosition
-        adapter.deleteItem(position)
+        val selectedSong = adapter.songsList[position]
+        selectedSong.id?.let { songId ->
+            adapter.deleteItem(position)
+            viewModel.removeSong(songId)
+        }
     }
 
     override fun onChildDraw(
