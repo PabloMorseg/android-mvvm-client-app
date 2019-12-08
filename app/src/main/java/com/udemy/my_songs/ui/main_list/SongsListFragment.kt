@@ -27,9 +27,10 @@ class SongsListFragment : Fragment() {
         return inflater.inflate(R.layout.songs_list_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         configureView()
+        fetchSongs()
     }
 
     private fun configureView() {
@@ -41,15 +42,25 @@ class SongsListFragment : Fragment() {
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }
 
-        viewModel.songsLiveData.observe(
-            viewLifecycleOwner, Observer { songsList ->
-                adapter.songsList = songsList as MutableList<Song>
-            }
-        )
-
         addButton.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_to_addSongFragment)
         }
+
+        swipeContainer.setOnRefreshListener {
+            viewModel.refreshSongs()
+        }
+    }
+
+    private fun fetchSongs() {
+        swipeContainer.isRefreshing = true
+        viewModel.getSongs().observe(
+            viewLifecycleOwner, Observer { songsList -> displaySongs(songsList) }
+        )
+    }
+
+    private fun displaySongs(songsList: List<Song>?) {
+        adapter.songsList = songsList as MutableList<Song>
+        swipeContainer.isRefreshing = false
     }
 
     companion object {
