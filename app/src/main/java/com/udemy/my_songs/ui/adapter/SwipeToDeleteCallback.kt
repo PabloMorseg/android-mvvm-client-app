@@ -1,4 +1,4 @@
-package com.udemy.my_songs.ui.main_list
+package com.udemy.my_songs.ui.adapter
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,11 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.udemy.my_songs.R
+import com.udemy.my_songs.ui.SongsViewModel
 
 class SwipeToDeleteCallback(
     context: Context,
     private val adapter: SongsRecyclerViewAdapter,
-    private val viewModel: SongsListViewModel
+    private val viewModel: SongsViewModel
 ) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 

@@ -20,7 +20,7 @@ interface NetworkService {
     suspend fun getSong(@Path("id") songId: String): Song // Obtener una canción dado su id.
 
     @PATCH("songs/{id}")
-    suspend fun updateSong(@Path("id") songId: String)  // Actualizar una canción dado su id.
+    suspend fun updateSong(@Path("id") songId: String, @Body song: Song)  // Actualizar una canción dado su id.
 
     @DELETE("songs/{id}")
     suspend fun removeSong(@Path("id") songId: String)  // Eliminar una canción dado su id.

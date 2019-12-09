@@ -1,4 +1,4 @@
-package com.udemy.my_songs.ui.add_song
+package com.udemy.my_songs.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,35 +9,49 @@ import androidx.fragment.app.Fragment
 import com.udemy.my_songs.R
 import com.udemy.my_songs.hideKeyboard
 import com.udemy.my_songs.model.Song
-import kotlinx.android.synthetic.main.add_song_fragment.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.detail_song_fragment.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class AddSongFragment : Fragment() {
+class EditSongFragment(private var song: Song) : Fragment() {
 
-    private val viewModel: AddSongViewModel by viewModel()
+    private val viewModel by sharedViewModel<SongsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.add_song_fragment, container, false)
+        return inflater.inflate(R.layout.detail_song_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         saveButton.setOnClickListener {
-            saveNewSong()
+            updateSong()
             activity?.hideKeyboard()
         }
     }
 
-    private fun saveNewSong() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupView()
+    }
+
+    private fun setupView() {
+        songNameEditText.setText(song.name)
+        artistNameEditText.setText(song.artist)
+        yearEditText.setText(song.year)
+    }
+
+    private fun updateSong() {
         val songName = songNameEditText.text.toString()
         val artistName = artistNameEditText.text.toString()
         val yearString = yearEditText.text.toString()
         if (songName.isNotEmpty() && artistName.isNotEmpty() && yearString.isNotEmpty()) {
-            val song = Song(songName, artistName, yearString.toInt())
-            viewModel.createSong(song)
+            song.name = songName
+            song.name = artistName
+            song.year = yearString.toInt()
+            viewModel.updateSong(song)
+
             Toast.makeText(context, R.string.song_saved_successfully, Toast.LENGTH_LONG)
                 .show()
         } else {
@@ -47,6 +61,6 @@ class AddSongFragment : Fragment() {
     }
 
     companion object {
-        operator fun invoke() = AddSongFragment()
+        operator fun invoke(song: Song) = EditSongFragment(song)
     }
 }

@@ -1,4 +1,4 @@
-package com.udemy.my_songs.ui.main_list
+package com.udemy.my_songs.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -12,9 +12,10 @@ import com.udemy.my_songs.model.Song
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SongsListViewModel(private val repository: Repository) : ViewModel() {
+class SongsViewModel(private val repository: Repository) : ViewModel() {
 
     private val tag = "SongsListViewModel"
+    private var songsNeedRefresh = false
 
     private val reloadTrigger = MutableLiveData<Boolean>()
     private val songs: LiveData<List<Song>> = Transformations.switchMap(reloadTrigger) {
@@ -29,19 +30,44 @@ class SongsListViewModel(private val repository: Repository) : ViewModel() {
     }
 
     init {
-        refreshSongs()
+        refreshSongs(true)
     }
 
     fun getSongs(): LiveData<List<Song>> = songs
 
-    fun refreshSongs() {
-        reloadTrigger.value = true
+    fun refreshSongs(forceUpdate: Boolean) {
+        if (forceUpdate || songsNeedRefresh) {
+            reloadTrigger.value = true
+        }
+    }
+
+    fun createSong(song: Song) {
+        viewModelScope.launch {
+            try {
+                repository.createSong(song)
+                songsNeedRefresh = true
+            } catch (exception: Exception) {
+                Log.e(tag, "Error creating song: ${exception.message}")
+            }
+        }
+    }
+
+    fun updateSong(song: Song) {
+        viewModelScope.launch {
+            try {
+                repository.updateSong(song)
+                songsNeedRefresh = true
+            } catch (exception: Exception) {
+                Log.e(tag, "Error updating song: ${exception.message}")
+            }
+        }
     }
 
     fun removeSong(songId: String) {
         viewModelScope.launch {
             try {
                 repository.removeSong(songId)
+                songsNeedRefresh = true
             } catch (exception: Exception) {
                 Log.e(tag, "Error removing song: ${exception.message}")
             }

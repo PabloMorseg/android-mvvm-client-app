@@ -1,4 +1,4 @@
-package com.udemy.my_songs.ui.main_list
+package com.udemy.my_songs.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +11,15 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.my_songs.R
 import com.udemy.my_songs.model.Song
+import com.udemy.my_songs.ui.adapter.SongsRecyclerViewAdapter
+import com.udemy.my_songs.ui.adapter.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.songs_list_fragment.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
 class SongsListFragment : Fragment() {
 
-    private val viewModel: SongsListViewModel by viewModel()
+    private val viewModel by sharedViewModel<SongsViewModel>()
     private val adapter by lazy { SongsRecyclerViewAdapter() }
 
     override fun onCreateView(
@@ -33,11 +35,21 @@ class SongsListFragment : Fragment() {
         fetchSongs()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshSongs(false)
+    }
+
     private fun configureView() {
         context?.let { context ->
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
-            val swipeToDeleteCallback = SwipeToDeleteCallback(context, adapter, viewModel)
+            val swipeToDeleteCallback =
+                SwipeToDeleteCallback(
+                    context,
+                    adapter,
+                    viewModel
+                )
             val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }
@@ -47,7 +59,7 @@ class SongsListFragment : Fragment() {
         }
 
         swipeContainer.setOnRefreshListener {
-            viewModel.refreshSongs()
+            viewModel.refreshSongs(true)
         }
     }
 
