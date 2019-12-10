@@ -8,7 +8,8 @@ import com.udemy.my_songs.inflate
 import com.udemy.my_songs.model.Song
 
 
-class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.ViewHolder>() {
+class SongsRecyclerViewAdapter(private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<SongsRecyclerViewAdapter.ViewHolder>() {
 
     var songsList: MutableList<Song> = mutableListOf()
         set(value) {
@@ -40,11 +41,16 @@ class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.V
             nameTextView.text = song.name
             artistTextView.text = song.artist
             yearTextView.text = song.year.toString()
+            itemView.setOnClickListener { listener.onItemClick(song) }
         }
     }
 
     fun deleteItem(position: Int) {
         songsList.removeAt(position)
         notifyItemRemoved(position)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(song: Song)
     }
 }

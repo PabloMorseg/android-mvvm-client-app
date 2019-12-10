@@ -45,8 +45,4 @@ class AddSongFragment : Fragment() {
                 .show()
         }
     }
-
-    companion object {
-        operator fun invoke() = AddSongFragment()
-    }
 }

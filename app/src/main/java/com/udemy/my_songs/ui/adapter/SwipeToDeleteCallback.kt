@@ -27,6 +27,9 @@ class SwipeToDeleteCallback(
     private val backgroundColor = Color.parseColor("#f44336")
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
+    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+        super.onSelectedChanged(viewHolder, actionState)
+    }
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,

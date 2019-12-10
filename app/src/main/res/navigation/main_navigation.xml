@@ -15,9 +15,20 @@
             app:launchSingleTop="false"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_to_editSongFragment"
+            app:destination="@id/editSongFragment" />
     </fragment>
     <fragment
         android:id="@+id/addSongFragment"
         android:name="com.udemy.my_songs.ui.AddSongFragment"
         android:label="AddSongFragment" />
+    <fragment
+        android:id="@+id/editSongFragment"
+        android:name="com.udemy.my_songs.ui.EditSongFragment"
+        android:label="EditSongFragment" >
+        <argument
+            android:name="song"
+            app:argType="com.udemy.my_songs.model.Song" />
+    </fragment>
 </navigation>

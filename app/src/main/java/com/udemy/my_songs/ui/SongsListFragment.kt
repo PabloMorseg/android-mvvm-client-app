@@ -16,11 +16,10 @@ import com.udemy.my_songs.ui.adapter.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.songs_list_fragment.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-
-class SongsListFragment : Fragment() {
+class SongsListFragment : Fragment(), SongsRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel by sharedViewModel<SongsViewModel>()
-    private val adapter by lazy { SongsRecyclerViewAdapter() }
+    private val adapter by lazy { SongsRecyclerViewAdapter(this) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +62,12 @@ class SongsListFragment : Fragment() {
         }
     }
 
+    override fun onItemClick(song: Song) {
+        val bundle = Bundle()
+        bundle.putParcelable(SONG_KEY, song)
+        view?.findNavController()?.navigate(R.id.action_to_editSongFragment, bundle)
+    }
+
     private fun fetchSongs() {
         swipeContainer.isRefreshing = true
         viewModel.getSongs().observe(
@@ -77,5 +82,6 @@ class SongsListFragment : Fragment() {
 
     companion object {
         operator fun invoke() = SongsListFragment()
+        const val SONG_KEY = "song_key"
     }
 }
