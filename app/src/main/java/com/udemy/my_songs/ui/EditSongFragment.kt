@@ -10,6 +10,7 @@ import com.udemy.my_songs.R
 import com.udemy.my_songs.hideKeyboard
 import com.udemy.my_songs.model.Song
 import com.udemy.my_songs.ui.SongsListFragment.Companion.SONG_KEY
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_song_fragment.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -36,6 +37,7 @@ class EditSongFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.toolbar?.title = resources.getString(R.string.edit_song)
         song = arguments?.getParcelable(SONG_KEY) as Song?
         setupView(song)
     }

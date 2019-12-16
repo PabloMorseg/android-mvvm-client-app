@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.udemy.my_songs.R
 import com.udemy.my_songs.hideKeyboard
 import com.udemy.my_songs.model.Song
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_song_fragment.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -29,6 +30,11 @@ class AddSongFragment : Fragment() {
             createSong()
             activity?.hideKeyboard()
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.toolbar?.title = resources.getString(R.string.new_song)
     }
 
     private fun createSong() {

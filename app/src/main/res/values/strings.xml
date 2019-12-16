@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">Mis canciones</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">My songs</string>
     <string name="song_name">Nombre de la canción</string>
     <string name="artist_name">Nombre del artista</string>
     <string name="published_year">Año de publicación</string>
     <string name="save">Guardar</string>
+    <string name="my_songs">Mis canciones</string>
+    <string name="edit_song">Editar canción</string>
+    <string name="new_song">Nueva canción</string>
     <string name="please_fill_all_the_fields">Por favor, rellena todos los campos.</string>
     <string name="song_saved_successfully">La canción se ha guardado correctamente.</string>
 </resources>

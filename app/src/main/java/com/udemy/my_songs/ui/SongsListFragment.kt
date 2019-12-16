@@ -13,6 +13,7 @@ import com.udemy.my_songs.R
 import com.udemy.my_songs.model.Song
 import com.udemy.my_songs.ui.adapter.SongsRecyclerViewAdapter
 import com.udemy.my_songs.ui.adapter.SwipeToDeleteCallback
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.songs_list_fragment.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -36,6 +37,7 @@ class SongsListFragment : Fragment(), SongsRecyclerViewAdapter.OnItemClickListen
 
     override fun onResume() {
         super.onResume()
+        activity?.toolbar?.title = resources.getString(R.string.my_songs)
         viewModel.refreshSongs(false)
     }
 
