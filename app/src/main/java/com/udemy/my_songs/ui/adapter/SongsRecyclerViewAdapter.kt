@@ -1,10 +1,11 @@
 package com.udemy.my_songs.ui.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.udemy.my_songs.inflate
+import com.udemy.my_songs.R
 import com.udemy.my_songs.model.Song
 
 
@@ -21,7 +22,8 @@ class SongsRecyclerViewAdapter(private val listener: OnItemClickListener) :
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val inflatedView = parent.inflate(com.udemy.my_songs.R.layout.recyclerview_item_row, false)
+        val inflatedView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recyclerview_item_row, parent, false)
         return ViewHolder(inflatedView)
     }
 

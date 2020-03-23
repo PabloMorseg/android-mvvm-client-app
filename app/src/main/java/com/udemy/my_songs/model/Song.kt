@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Song(var name: String, var artist: String, var year: Int) : Parcelable {
-    @SerializedName("_id")
+data class Song(
+    var name: String, var artist: String, var year: Int, @SerializedName("_id")
     var id: String? = null
-}
+) : Parcelable
