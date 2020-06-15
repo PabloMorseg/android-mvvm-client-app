@@ -26,13 +26,16 @@ class SongsListFragment : Fragment(), SongsRecyclerViewAdapter.OnItemClickListen
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.songs_list_fragment, container, false)
+        val view = inflater.inflate(R.layout.songs_list_fragment, container, false)
+        viewModel.getSongs().observe(
+            viewLifecycleOwner, Observer { songsList -> displaySongs(songsList) }
+        )
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureView()
-        fetchSongs()
     }
 
     override fun onResume() {
@@ -68,13 +71,6 @@ class SongsListFragment : Fragment(), SongsRecyclerViewAdapter.OnItemClickListen
         val bundle = Bundle()
         bundle.putParcelable(SONG_KEY, song)
         view?.findNavController()?.navigate(R.id.action_to_editSongFragment, bundle)
-    }
-
-    private fun fetchSongs() {
-        swipeContainer.isRefreshing = true
-        viewModel.getSongs().observe(
-            viewLifecycleOwner, Observer { songsList -> displaySongs(songsList) }
-        )
     }
 
     private fun displaySongs(songsList: List<Song>?) {
